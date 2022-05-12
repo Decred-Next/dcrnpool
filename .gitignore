@@ -8,7 +8,7 @@ logs
 *.conf
 /pool/testdb
 /certs/*
-
+.idea
 # Testing, profiling, and benchmarking artifacts
 cov.out
 *cpu.out
