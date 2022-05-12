@@ -50,3 +50,6 @@ require (
 	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 )
+
+replace github.com/decred/dcrd/chaincfg/v3 v3.0.1-0.20210914212651-723d86274b0d => github.com/Decred-Next/dcrnd/chaincfg/v3 v3.1.2
+replace github.com/decred/dcrd/wire v1.4.1-0.20210914212651-723d86274b0d => ./wire
