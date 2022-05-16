@@ -36,7 +36,7 @@ var (
 		InnosiliconD9:     new(big.Int).SetInt64(2.4e12),
 		AntminerDR3:       new(big.Int).SetInt64(7.8e12),
 		AntminerDR5:       new(big.Int).SetInt64(35e12),
-		WhatsminerD1:      new(big.Int).SetInt64(48e12),
+		WhatsminerD1:      new(big.Int).SetInt64(4e12),
 		NiceHashValidator: new(big.Int).SetInt64(20e10),
 	}
 )

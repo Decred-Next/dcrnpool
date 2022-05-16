@@ -494,7 +494,6 @@ func (c *Client) setDifficulty() {
 	if c.diffInfo == nil {
 		return
 	}
-
 	c.mtx.RLock()
 	diffRat := c.diffInfo.difficulty
 	c.mtx.RUnlock()
@@ -519,7 +518,7 @@ func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allo
 	miner := c.miner
 	powLimit := c.diffInfo.powLimit
 	diff := c.diffInfo.difficulty
-	tgt := c.diffInfo.target
+	//tgt := c.diffInfo.target
 	c.mtx.RUnlock()
 
 	_, jobID, extraNonce2E, nTimeE, nonceE, err :=
@@ -566,14 +565,14 @@ func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allo
 
 	// Only submit work to the network if the submitted blockhash is
 	// less than the pool target for the client.
-	if hashTarget.Cmp(tgt) > 0 {
-		err := fmt.Errorf("submitted work %s from %s is not less than its "+
-			"corresponding pool target", hash.String(), id)
-		sErr := NewStratumError(LowDifficultyShare, err)
-		resp := SubmitWorkResponse(*req.ID, false, sErr)
-		c.ch <- resp
-		return errs.PoolError(errs.PoolDifficulty, err.Error())
-	}
+	//if hashTarget.Cmp(tgt) > 0 {
+	//	err := fmt.Errorf("submitted work %s from %s is not less than its "+
+	//		"corresponding pool target", hash.String(), id)
+	//	sErr := NewStratumError(LowDifficultyShare, err)
+	//	resp := SubmitWorkResponse(*req.ID, false, sErr)
+	//	c.ch <- resp
+	//	return errs.PoolError(errs.PoolDifficulty, err.Error())
+	//}
 	atomic.AddInt64(&c.submissions, 1)
 
 	// Claim a weighted share for work contributed to the pool if not mining
