@@ -51,5 +51,8 @@ require (
 	google.golang.org/protobuf v1.25.0 // indirect
 )
 
-replace github.com/decred/dcrd/chaincfg/v3 v3.0.1-0.20210914212651-723d86274b0d => github.com/Decred-Next/dcrnd/chaincfg/v3 v3.1.2
-replace github.com/decred/dcrd/wire v1.4.1-0.20210914212651-723d86274b0d => ./wire
+replace (
+	github.com/decred/dcrd/chaincfg/v3 v3.0.1-0.20210914212651-723d86274b0d => ../dcrnd/chaincfg
+	github.com/decred/dcrd/wire v1.4.1-0.20210914212651-723d86274b0d => ./wire
+	golang.org/x/sys v0.0.0-20200814200057-3d37ad5750ed => golang.org/x/sys v0.0.0-20220315194320-039c03cc5b86
+)

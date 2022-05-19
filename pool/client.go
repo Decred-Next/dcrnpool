@@ -86,6 +86,8 @@ type ClientConfig struct {
 	RemoveClient func(*Client)
 	// SubmitWork sends solved block data to the consensus daemon.
 	SubmitWork func(context.Context, *string) (bool, error)
+	// GetDifficulty returns the current difficulty of the chain
+	GetDifficulty func(context.Context) (float64, error)
 	// FetchCurrentWork returns the current work of the pool.
 	FetchCurrentWork func() string
 	// WithinLimit returns if the client is still within its request limits.
@@ -494,14 +496,43 @@ func (c *Client) setDifficulty() {
 	if c.diffInfo == nil {
 		return
 	}
+	//todo
+	//c.mtx.RLock()
+	//diffRat := c.diffInfo.difficulty
+	//c.mtx.RUnlock()
+	diff, err := c.cfg.GetDifficulty(c.ctx)
+	if err != nil {
+		log.Errorf("get difficulty from chain err : %v", err)
+	}
 
-	c.mtx.RLock()
-	diffRat := c.diffInfo.difficulty
-	c.mtx.RUnlock()
-	diff := new(big.Rat).Set(diffRat)
-	diffNotif := SetDifficultyNotification(diff)
+	diffRat := new(big.Rat).SetFloat64(diff)
+
+	diffRat = new(big.Rat).Set(diffRat)
+	diffNotif := SetDifficultyNotification(diffRat)
 	c.ch <- diffNotif
 }
+
+//func (c *Client) GetWordDifficulty() (*big.Rat, *big.Rat) {
+//	headerE := c.cfg.FetchCurrentWork()
+//	heightD, err := hex.DecodeString(headerE[256:264])
+//	if err != nil {
+//		log.Errorf("unable to decode block height %s: %v",
+//			string(heightD), err)
+//
+//	}
+//	nBitsD, err := hex.DecodeString(headerE[232:240])
+//	if err != nil {
+//		lode nbits %s: %v",og.Errorf("unable to dec
+//			string(nBitsD), err)
+//
+//	}
+//	nbits := binary.LittleEndian.Uint32(nBitsD)
+//	target := new(big.Rat).SetInt(standalone.CompactToBig(nbits))
+//	powLimit := c.diffInfo.powLimit
+//
+//	diff := new(big.Rat).Quo(powLimit, target)
+//	return target, diff
+//}
 
 // handleSubmitWorkRequest processes work submission request messages received.
 func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allowed bool) error {
@@ -519,7 +550,7 @@ func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allo
 	miner := c.miner
 	powLimit := c.diffInfo.powLimit
 	diff := c.diffInfo.difficulty
-	tgt := c.diffInfo.target
+	//tgt := c.diffInfo.target
 	c.mtx.RUnlock()
 
 	_, jobID, extraNonce2E, nTimeE, nonceE, err :=
@@ -566,14 +597,14 @@ func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allo
 
 	// Only submit work to the network if the submitted blockhash is
 	// less than the pool target for the client.
-	if hashTarget.Cmp(tgt) > 0 {
-		err := fmt.Errorf("submitted work %s from %s is not less than its "+
-			"corresponding pool target", hash.String(), id)
-		sErr := NewStratumError(LowDifficultyShare, err)
-		resp := SubmitWorkResponse(*req.ID, false, sErr)
-		c.ch <- resp
-		return errs.PoolError(errs.PoolDifficulty, err.Error())
-	}
+	//if hashTarget.Cmp(tgt) > 0 {
+	//	err := fmt.Errorf("submitted work %s from %s is not less than its "+
+	//		"corresponding pool target", hash.String(), id)
+	//	sErr := NewStratumError(LowDifficultyShare, err)
+	//	resp := SubmitWorkResponse(*req.ID, false, sErr)
+	//	c.ch <- resp
+	//	return errs.PoolError(errs.PoolDifficulty, err.Error())
+	//}
 	atomic.AddInt64(&c.submissions, 1)
 
 	// Claim a weighted share for work contributed to the pool if not mining
@@ -594,7 +625,7 @@ func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allo
 
 	// Only submit work to the network if the submitted blockhash is
 	// less than the network target difficulty.
-	if hashTarget.Cmp(target) > 0 {
+	/*	if hashTarget.Cmp(target) > 0 {
 		// Accept the submitted work but note it is not less than the
 		// network target difficulty.
 		resp := SubmitWorkResponse(*req.ID, true, nil)
@@ -603,7 +634,7 @@ func (c *Client) handleSubmitWorkRequest(ctx context.Context, req *Request, allo
 		desc := fmt.Sprintf("submitted work %s from %s is not "+
 			"less than the network target difficulty", hash.String(), id)
 		return errs.PoolError(errs.NetworkDifficulty, desc)
-	}
+	}*/
 
 	// Generate and send the work submission.
 	headerB, err := header.Bytes()
@@ -774,7 +805,6 @@ func (c *Client) updateWork(cleanJob bool) {
 		log.Tracef("no work available to send %s", id)
 		return
 	}
-
 	now := uint32(time.Now().Unix())
 	b := make([]byte, 4)
 	binary.LittleEndian.PutUint32(b, now)
@@ -1015,6 +1045,19 @@ func (c *Client) handleInnosiliconD9Work(req *Request) {
 
 // handleWhatsminerD1Work prepares work notifications for the Whatsminer D1.
 func (c *Client) handleWhatsminerD1Work(req *Request) {
+	diff, err := c.cfg.GetDifficulty(c.ctx)
+	if err != nil {
+		log.Errorf("get difficulty from chain err : %v", err)
+	}
+	c.mtx.RLock()
+	d := c.diffInfo.difficulty
+	c.mtx.RUnlock()
+	idiffuint, _ := d.Float64()
+	if uint64(diff) != uint64(idiffuint) {
+		c.setDifficulty()
+		log.Tracef("notification :handleWhatsminerD1Workset difficulty  : %v", diff)
+
+	}
 	miner := "WhatsminerD1"
 	jobID, prevBlock, genTx1, genTx2, blockVersion, nBits, nTime,
 		cleanJob, err := ParseWorkNotification(req)
@@ -1273,6 +1316,7 @@ func (c *Client) send() {
 					}
 				}
 				if req.Method != Notify {
+
 					err := c.encoder.Encode(msg)
 					if err != nil {
 						log.Errorf("encoding error for message %s: %v",
@@ -1280,6 +1324,24 @@ func (c *Client) send() {
 						c.cancel()
 						continue
 					}
+					if req.Method == SetDifficulty {
+						params := req.Params.([]uint64)
+						if len(params) == 0 {
+							continue
+						}
+						diff := params[0]
+						diffRat := new(big.Rat).SetFloat64(float64(diff))
+						c.mtx.Lock()
+						infodiff := c.diffInfo.difficulty
+						infodiffF, _ := infodiff.Float64()
+						infodiffuint := uint64(infodiffF)
+						if infodiffuint != diff {
+							c.diffInfo.difficulty = diffRat
+							log.Tracef("update info.difficulty   : %v", diff)
+						}
+						c.mtx.Unlock()
+					}
+
 				}
 			}
 		}

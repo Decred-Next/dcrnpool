@@ -77,12 +77,12 @@ func newPool(db pool.Database, cfg *config) (*miningPool, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to initialize hub: %v", err)
 	}
-
+	// connect node
 	err = p.hub.Connect(p.ctx)
 	if err != nil {
 		return nil, fmt.Errorf("unable to establish node connections: %v", err)
 	}
-
+	// fetch work from node to init chainState (db)
 	err = p.hub.FetchWork(p.ctx)
 	if err != nil {
 		return nil, err
