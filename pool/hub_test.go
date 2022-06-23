@@ -180,7 +180,9 @@ func (t *tNodeConnection) GetTxOut(context.Context, *chainhash.Hash, uint32, int
 func (t *tNodeConnection) GetWorkSubmit(_ context.Context, sub string) (bool, error) {
 	return false, nil
 }
-
+func (t *tNodeConnection) GetDifficulty(_ context.Context) (float64, error) {
+	return -1, nil
+}
 func (t *tNodeConnection) GetWork(context.Context) (*chainjson.GetWorkResult, error) {
 	return &chainjson.GetWorkResult{
 		Data: "07000000ddb9fb70cb6ed184f57bfb94abebe7e7b9819e27d6e3ca8" +

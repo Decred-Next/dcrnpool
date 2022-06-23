@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/decred/dcrd/blockchain/standalone/v2"
 	"io"
 	"math"
 	"math/big"
@@ -1616,4 +1617,27 @@ func testClientUpgrades(t *testing.T) {
 	time.Sleep(cTimeout + (cTimeout / 4))
 
 	client.cancel()
+}
+
+func TestClient_GetDifficulty(t *testing.T) {
+
+	powLimit := new(big.Rat).SetInt(standalone.CompactToBig(0x1d00ffff))
+	target := new(big.Rat).SetInt(standalone.CompactToBig(0x1d00013a))
+	//diff := new(big.Rat).SetInt(new(big.Int).SetInt64(1))
+
+	diff := new(big.Rat).Quo(powLimit, target)
+	difff, _ := diff.Float64()
+	fmt.Println(difff)
+
+}
+func TestClient_GetBits(t *testing.T) {
+
+	powLimit := new(big.Rat).SetInt(standalone.CompactToBig(0x1d00ffff))
+
+	diff := new(big.Rat).SetFloat64(float64(1))
+	//diff := new(big.Rat).SetInt(new(big.Int).SetInt64(1))
+
+	bits := new(big.Rat).Quo(powLimit, diff)
+
+	fmt.Println(standalone.BigToCompact(bits.Num()))
 }

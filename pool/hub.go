@@ -112,6 +112,7 @@ type NodeConnection interface {
 	GetTxOut(context.Context, *chainhash.Hash, uint32, int8, bool) (*chainjson.GetTxOutResult, error)
 	CreateRawTransaction(context.Context, []chainjson.TransactionInput, map[stdaddr.Address]dcrutil.Amount, *int64, *int64) (*wire.MsgTx, error)
 	GetWorkSubmit(context.Context, string) (bool, error)
+	GetDifficulty(ctx context.Context) (float64, error)
 	GetWork(context.Context) (*chainjson.GetWorkResult, error)
 	GetBlockVerbose(context.Context, *chainhash.Hash, bool) (*chainjson.GetBlockVerboseResult, error)
 	GetBlock(context.Context, *chainhash.Hash) (*wire.MsgBlock, error)
@@ -243,7 +244,7 @@ func NewHub(cancel context.CancelFunc, hcfg *HubConfig) (*Hub, error) {
 
 	log.Infof("Maximum work submission generation time at "+
 		"pool difficulty is %s.", maxGenTime)
-
+	//set pool diffs in hub
 	h.poolDiffs = NewDifficultySet(h.cfg.ActiveNet, powLimit, maxGenTime)
 
 	pCfg := &PaymentMgrConfig{
@@ -269,7 +270,7 @@ func NewHub(cancel context.CancelFunc, hcfg *HubConfig) (*Hub, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	// set chain state in hub ,import - DB
 	sCfg := &ChainStateConfig{
 		db:                    h.cfg.DB,
 		SoloPool:              h.cfg.SoloPool,
@@ -314,7 +315,7 @@ func NewHub(cancel context.CancelFunc, hcfg *HubConfig) (*Hub, error) {
 	} else {
 		log.Infof("Solo pool mode active.")
 	}
-
+	//
 	eCfg := &EndpointConfig{
 		ActiveNet:             h.cfg.ActiveNet,
 		db:                    h.cfg.DB,
@@ -324,17 +325,19 @@ func NewHub(cancel context.CancelFunc, hcfg *HubConfig) (*Hub, error) {
 		MaxConnectionsPerHost: h.cfg.MaxConnectionsPerHost,
 		HubWg:                 h.wg,
 		FetchMinerDifficulty:  h.poolDiffs.fetchMinerDifficulty,
-		SubmitWork:            h.submitWork,
-		FetchCurrentWork:      h.chainState.fetchCurrentWork,
-		WithinLimit:           h.limiter.withinLimit,
-		AddConnection:         h.addConnection,
-		RemoveConnection:      h.removeConnection,
-		FetchHostConnections:  h.fetchHostConnections,
-		MaxGenTime:            h.cfg.MaxGenTime,
-		SignalCache:           h.SignalCache,
-		MonitorCycle:          h.cfg.MonitorCycle,
-		MaxUpgradeTries:       h.cfg.MaxUpgradeTries,
-		ClientTimeout:         h.cfg.ClientTimeout,
+		//todo  + diff
+		SubmitWork:           h.submitWork,
+		GetDifficulty:        h.getDifficulty,
+		FetchCurrentWork:     h.chainState.fetchCurrentWork,
+		WithinLimit:          h.limiter.withinLimit,
+		AddConnection:        h.addConnection,
+		RemoveConnection:     h.removeConnection,
+		FetchHostConnections: h.fetchHostConnections,
+		MaxGenTime:           h.cfg.MaxGenTime,
+		SignalCache:          h.SignalCache,
+		MonitorCycle:         h.cfg.MonitorCycle,
+		MaxUpgradeTries:      h.cfg.MaxUpgradeTries,
+		ClientTimeout:        h.cfg.ClientTimeout,
 	}
 
 	h.endpoint, err = NewEndpoint(eCfg, h.cfg.MinerListen)
@@ -365,7 +368,7 @@ func (h *Hub) Connect(ctx context.Context) error {
 		return fmt.Errorf("unable to subscribe for block "+
 			"notifications: %v", err)
 	}
-
+	//connect node
 	h.nodeConn = nodeConn
 
 	// Establish a connection to the wallet if the pool is
@@ -430,6 +433,13 @@ func (h *Hub) submitWork(ctx context.Context, data *string) (bool, error) {
 	}
 
 	return h.nodeConn.GetWorkSubmit(ctx, *data)
+}
+func (h *Hub) getDifficulty(ctx context.Context) (float64, error) {
+	if h.nodeConn == nil {
+		return -1, errs.PoolError(errs.Disconnected, "node disconnected")
+	}
+
+	return h.nodeConn.GetDifficulty(ctx)
 }
 
 // getWork fetches available work from the consensus daemon.
@@ -568,9 +578,11 @@ func (h *Hub) processWork(headerE string) {
 	h.endpoint.clientsMtx.Unlock()
 }
 
+//  handle block and work notifications of node
 // createNotificationHandlers returns handlers for block and work notifications.
 func (h *Hub) createNotificationHandlers() *rpcclient.NotificationHandlers {
 	return &rpcclient.NotificationHandlers{
+		//subscribe block of node,send to chainState module
 		OnBlockConnected: func(headerB []byte, transactions [][]byte) {
 			h.chainState.connCh <- &blockNotification{
 				Header: headerB,
@@ -590,7 +602,9 @@ func (h *Hub) createNotificationHandlers() *rpcclient.NotificationHandlers {
 				h.chainState.setCurrentWork(currWork)
 
 			case NewParent, NewVotes:
+				//subscribe work of node ,update cainState currentWrok
 				h.chainState.setCurrentWork(currWork)
+				//make  workNotif ,sent to client (miner)
 				h.processWork(currWork)
 			}
 		},
@@ -635,6 +649,7 @@ func (h *Hub) shutdown() {
 func (h *Hub) Run(ctx context.Context) {
 	h.wg.Add(3)
 	go h.endpoint.run(ctx)
+	//update chain state
 	go h.chainState.handleChainUpdates(ctx)
 	go h.paymentMgr.handlePayments(ctx)
 

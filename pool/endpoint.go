@@ -43,6 +43,8 @@ type EndpointConfig struct {
 	FetchMinerDifficulty func(string) (*DifficultyInfo, error)
 	// SubmitWork sends solved block data to the consensus daemon.
 	SubmitWork func(context.Context, *string) (bool, error)
+	// GetDifficulty returns the current difficulty of the chain
+	GetDifficulty func(context.Context) (float64, error)
 	// FetchCurrentWork returns the current work of the pool.
 	FetchCurrentWork func() string
 	// WithinLimit returns if a client is within its request limits.
@@ -170,6 +172,7 @@ func (e *Endpoint) connect(ctx context.Context) {
 				Disconnect:           func() { e.wg.Done() },
 				RemoveClient:         e.removeClient,
 				SubmitWork:           e.cfg.SubmitWork,
+				GetDifficulty:        e.cfg.GetDifficulty,
 				FetchCurrentWork:     e.cfg.FetchCurrentWork,
 				WithinLimit:          e.cfg.WithinLimit,
 				HashCalcThreshold:    hashCalcThreshold,
