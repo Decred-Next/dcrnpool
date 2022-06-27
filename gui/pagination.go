@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/decred/dcrpool/pool"
+	"github.com/Decred-Next/dcrpool/pool"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 )

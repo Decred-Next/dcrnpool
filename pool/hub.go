@@ -25,15 +25,15 @@ import (
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 	"github.com/Decred-Next/dcrnd/dcrjson/version4/v8"
 	"github.com/Decred-Next/dcrnwallet/v8/rpc/walletrpc"
-	"github.com/decred/dcrd/dcrutil/v4"
-	chainjson "github.com/decred/dcrd/rpc/jsonrpc/types/v3"
-	"github.com/decred/dcrd/rpcclient/v7"
-	"github.com/decred/dcrd/txscript/v4/stdaddr"
-	"github.com/decred/dcrd/wire"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
+	chainjson "github.com/Decred-Next/dcrnd/rpc/jsonrpc/types/version3/v8"
+	"github.com/Decred-Next/dcrnd/rpcclient/version7/v8"
+	"github.com/Decred-Next/dcrnd/txscript/version4/v8/stdaddr"
+	"github.com/Decred-Next/dcrnd/wire/v8"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 const (

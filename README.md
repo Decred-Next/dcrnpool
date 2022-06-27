@@ -1,8 +1,8 @@
 # dcrpool
 
-[![Build Status](https://github.com/decred/dcrpool/workflows/Build%20and%20Test/badge.svg)](https://github.com/decred/dcrpool/actions)
+[![Build Status](https://github.com/Decred-Next/dcrpool/workflows/Build%20and%20Test/badge.svg)](https://github.com/Decred-Next/dcrpool/actions)
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
-[![Go Report Card](https://goreportcard.com/badge/github.com/decred/dcrpool)](https://goreportcard.com/report/github.com/decred/dcrpool)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Decred-Next/dcrpool)](https://goreportcard.com/report/github.com/Decred-Next/dcrpool)
 
 ## Overview
 
@@ -12,7 +12,7 @@ dcrpool is a stratum decred mining pool. It currently supports:
 * Innosilicon D9 (supported firmware: [d9_20190521_071217.swu](http://www.innosilicon.com.cn/download/d9_20190521_071217.swu))
 * Antminer DR3 (supported firmware: [Antminer-DR3-201907161805-410M.tar.gz](https://file12.bitmain.com/shop-product/firmware/Antminer%20DR3/Firmware/007201907271437364778LxDsS1k06AF/Antminer-DR3-201907161805-410M.tar.gz))
 * Antminer DR5 (supported firmware: [Antminer-DR5-201907161801-600M.tar.gz](https://file12.bitmain.com/shop-product/firmware/Antminer%20DR5/Firmware/00720190727142534231Ato7d2300650/Antminer-DR5-201907161801-600M.tar.gz))
-* Whatsminer D1 (supported firmware: [upgrade-whatsminer-h6-20190404.18.zip](https://github.com/decred/dcrpool/files/5651882/upgrade-whatsminer-h6-20190404.18.zip))
+* Whatsminer D1 (supported firmware: [upgrade-whatsminer-h6-20190404.18.zip](https://github.com/Decred-Next/dcrpool/files/5651882/upgrade-whatsminer-h6-20190404.18.zip))
 
 The default port all supported miners connect to the pool via is `:5550`. 
 The pool can be configured to mine in solo pool mode or as a publicly available 
@@ -83,7 +83,7 @@ Bolt database when necessary.
 ### Example of obtaining and building from source on Ubuntu
 
 ```sh
-git clone https://github.com/decred/dcrpool.git
+git clone https://github.com/Decred-Next/dcrpool.git
 cd dcrpool
 go install
 dcrpool --configfile=path/to/config.conf
@@ -257,7 +257,7 @@ If you have any further questions you can find us at https://decred.org/communit
 
 ## Issue Tracker
 
-The [integrated github issue tracker](https://github.com/decred/dcrpool/issues)
+The [integrated github issue tracker](https://github.com/Decred-Next/dcrpool/issues)
 is used for this project.
 
 ## License

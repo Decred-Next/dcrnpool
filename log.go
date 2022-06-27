@@ -10,11 +10,11 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/decred/slog"
+	"github.com/Decred-Next/slog/v8"
 	"github.com/jrick/logrotate/rotator"
 
-	"github.com/decred/dcrpool/gui"
-	"github.com/decred/dcrpool/pool"
+	"github.com/Decred-Next/dcrpool/gui"
+	"github.com/Decred-Next/dcrpool/pool"
 )
 
 // logWriter implements an io.Writer that outputs to both standard output and

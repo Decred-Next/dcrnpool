@@ -9,7 +9,7 @@ import (
 	"encoding/hex"
 	"time"
 
-	"github.com/decred/dcrd/dcrutil/v4"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
 )
 
 // PaymentSource represents the payment's source of funds.

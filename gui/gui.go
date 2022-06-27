@@ -22,7 +22,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 
-	"github.com/decred/dcrpool/pool"
+	"github.com/Decred-Next/dcrpool/pool"
 )
 
 // Config contains all of the required configuration values for the GUI

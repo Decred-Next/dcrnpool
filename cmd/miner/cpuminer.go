@@ -17,8 +17,8 @@ import (
 	"time"
 
 	"github.com/Decred-Next/dcrnd/blockchain/standalone/v8"
-	"github.com/decred/dcrd/wire"
-	"github.com/decred/dcrpool/pool"
+	"github.com/Decred-Next/dcrnd/wire/v8"
+	"github.com/Decred-Next/dcrpool/pool"
 )
 
 const (

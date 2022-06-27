@@ -17,17 +17,17 @@ import (
 	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 	"github.com/Decred-Next/dcrnwallet/v8/rpc/walletrpc"
-	txrules "github.com/Decred-Next/dcrnwallet/v8/wallet/version8/txrules"
-	txsizes "github.com/Decred-Next/dcrnwallet/v8/wallet/version8/txsizes"
-	"github.com/decred/dcrd/dcrutil/v4"
-	chainjson "github.com/decred/dcrd/rpc/jsonrpc/types/v3"
-	"github.com/decred/dcrd/txscript/v4/stdaddr"
-	"github.com/decred/dcrd/wire"
+	txrules "github.com/Decred-Next/dcrnwallet/v8/wallet/version2/txrules"
+	txsizes "github.com/Decred-Next/dcrnwallet/v8/wallet/version2/txsizes"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
+	chainjson "github.com/Decred-Next/dcrnd/rpc/jsonrpc/types/version3/v8"
+	"github.com/Decred-Next/dcrnd/txscript/version4/v8/stdaddr"
+	"github.com/Decred-Next/dcrnd/wire/v8"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 const (

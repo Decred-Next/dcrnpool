@@ -24,7 +24,7 @@ import (
 
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 var (

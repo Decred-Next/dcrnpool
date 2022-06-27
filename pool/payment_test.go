@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
-	"github.com/decred/dcrd/dcrutil/v4"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 func testPayment(t *testing.T) {

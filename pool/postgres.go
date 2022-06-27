@@ -13,11 +13,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/decred/dcrd/dcrutil/v4"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
 
 	"github.com/lib/pq"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 // InitPostgresDB connects to the specified database and creates all tables

@@ -22,10 +22,10 @@ import (
 
 	"github.com/Decred-Next/dcrnd/certgen/v8"
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
-	"github.com/decred/dcrd/dcrutil/v4"
-	"github.com/decred/dcrd/txscript/v4/stdaddr"
-	"github.com/decred/dcrpool/pool"
-	"github.com/decred/slog"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
+	"github.com/Decred-Next/dcrnd/txscript/version4/v8/stdaddr"
+	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/slog/v8"
 )
 
 const (

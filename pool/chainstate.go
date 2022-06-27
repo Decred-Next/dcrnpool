@@ -13,10 +13,10 @@ import (
 
 	"github.com/Decred-Next/dcrnd/blockchain/standalone/v8"
 	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
-	"github.com/decred/dcrd/dcrutil/v4"
-	"github.com/decred/dcrd/wire"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
+	"github.com/Decred-Next/dcrnd/wire/v8"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 const (
@@ -187,7 +187,7 @@ func isTreasuryActive(tx *wire.MsgTx) bool {
 	if tx.Version < wire.TxVersionTreasury {
 		return false
 	}
-	if !standalone.IsCoinBaseTx(tx, true) {
+	if !standalone.IsCoinBaseTxV2(tx, true) {
 		return false
 	}
 	return true

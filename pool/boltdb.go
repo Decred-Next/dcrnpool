@@ -17,7 +17,7 @@ import (
 
 	bolt "go.etcd.io/bbolt"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 var (

@@ -16,7 +16,7 @@ import (
 
 	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
 	"github.com/decred/dcrd/dcrutil/v3"
-	"github.com/decred/dcrpool/pool"
+	"github.com/Decred-Next/dcrpool/pool"
 )
 
 const dbname = "v5.db"

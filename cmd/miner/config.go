@@ -18,8 +18,8 @@ import (
 	"strings"
 
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
-	"github.com/decred/dcrd/dcrutil/v4"
-	"github.com/decred/slog"
+	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
+	"github.com/Decred-Next/slog/v8"
 	flags "github.com/jessevdk/go-flags"
 )
 

@@ -8,7 +8,7 @@ import (
 	"errors"
 	"testing"
 
-	errs "github.com/decred/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrpool/errors"
 )
 
 func testAccount(t *testing.T) {
