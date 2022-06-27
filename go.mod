@@ -4,18 +4,18 @@ go 1.17
 
 require (
 	github.com/Decred-Next/dcrnd/blockchain/standalone/v8 v8.0.99998
-	github.com/Decred-Next/dcrnd/certgen/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/chaincfg/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/crypto/blake256/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/dcrjson/version4/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/dcrutil/version4/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/rpc/jsonrpc/types/version3/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/rpcclient/version7/v8 v8.0.0
-	github.com/Decred-Next/dcrnd/txscript/version4/v8 v8.0.10
-	github.com/Decred-Next/dcrnd/wire/v8 v8.0.99998
+	github.com/Decred-Next/dcrnd/certgen/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/chaincfg/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/crypto/blake256/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/dcrjson/version4/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/dcrutil/version4/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/rpc/jsonrpc/types/version3/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/rpcclient/version7/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/txscript/version4/v8 v8.0.12
+	github.com/Decred-Next/dcrnd/wire/v8 v8.0.12
 	github.com/Decred-Next/dcrnwallet/v8 v8.0.3
-	github.com/Decred-Next/slog/v8 v8.0.10
+	github.com/Decred-Next/slog/v8 v8.0.12
 	github.com/gorilla/csrf v1.7.0
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/sessions v1.2.1
@@ -30,18 +30,18 @@ require (
 )
 
 require (
-	github.com/Decred-Next/base58/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/blockchain/stake/version2/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/crypto/ripemd160/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/database/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/dcrec/edwards/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/dcrec/secp256k1/version2/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/dcrec/secp256k1/version4/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/dcrec/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/dcrutil/version2/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/gcs/version2/v8 v8.0.10 // indirect
-	github.com/Decred-Next/dcrnd/txscript/version2/v8 v8.0.10 // indirect
-	github.com/Decred-Next/go-socks/v8 v8.0.10 // indirect
+	github.com/Decred-Next/base58/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/blockchain/stake/version2/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/crypto/ripemd160/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/database/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/dcrec/edwards/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/dcrec/secp256k1/version2/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/dcrec/secp256k1/version4/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/dcrec/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/dcrutil/version2/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/gcs/version2/v8 v8.0.12 // indirect
+	github.com/Decred-Next/dcrnd/txscript/version2/v8 v8.0.12 // indirect
+	github.com/Decred-Next/go-socks/v8 v8.0.12 // indirect
 	github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412 // indirect
 	github.com/dchest/siphash v1.2.2 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
