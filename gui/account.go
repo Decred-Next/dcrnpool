@@ -7,7 +7,7 @@ package gui
 import (
 	"net/http"
 
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/pool"
 	"github.com/gorilla/csrf"
 )
 

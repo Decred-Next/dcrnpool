@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/pool"
 	"github.com/gorilla/sessions"
 )
 

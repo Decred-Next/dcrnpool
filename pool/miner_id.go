@@ -7,7 +7,7 @@ package pool
 import (
 	"fmt"
 
-	errs "github.com/Decred-Next/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrnpool/errors"
 )
 
 var (

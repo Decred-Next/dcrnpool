@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	errs "github.com/Decred-Next/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrnpool/errors"
 )
 
 func testHashData(t *testing.T) {

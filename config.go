@@ -24,7 +24,7 @@ import (
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
 	"github.com/Decred-Next/dcrnd/txscript/version4/v8/stdaddr"
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/pool"
 	"github.com/Decred-Next/slog/v8"
 )
 

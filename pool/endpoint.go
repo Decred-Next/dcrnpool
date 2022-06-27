@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
-	errs "github.com/Decred-Next/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrnpool/errors"
 )
 
 // EndpointConfig contains all of the configuration values which should be

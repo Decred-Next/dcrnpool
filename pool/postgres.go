@@ -17,7 +17,7 @@ import (
 
 	"github.com/lib/pq"
 
-	errs "github.com/Decred-Next/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrnpool/errors"
 )
 
 // InitPostgresDB connects to the specified database and creates all tables

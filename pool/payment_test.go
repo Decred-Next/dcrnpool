@@ -11,7 +11,7 @@ import (
 	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
 	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
 
-	errs "github.com/Decred-Next/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrnpool/errors"
 )
 
 func testPayment(t *testing.T) {

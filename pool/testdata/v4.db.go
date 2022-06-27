@@ -15,7 +15,7 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/pool"
 )
 
 const dbname = "v4.db"

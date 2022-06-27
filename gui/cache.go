@@ -11,7 +11,7 @@ import (
 	"sync"
 
 	"github.com/Decred-Next/dcrnd/dcrutil/version4/v8"
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/pool"
 )
 
 // client represents a mining client. It is json annotated so it can easily be

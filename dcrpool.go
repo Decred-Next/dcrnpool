@@ -16,8 +16,8 @@ import (
 	"runtime"
 
 	"github.com/Decred-Next/dcrnd/rpcclient/version7/v8"
-	"github.com/Decred-Next/dcrpool/gui"
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/gui"
+	"github.com/Decred-Next/dcrnpool/pool"
 )
 
 // signals defines the signals that are handled to do a clean shutdown.

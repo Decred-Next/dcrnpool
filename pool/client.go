@@ -28,7 +28,7 @@ import (
 	"github.com/Decred-Next/dcrnd/txscript/version4/v8/stdaddr"
 	"github.com/Decred-Next/dcrnd/wire/v8"
 
-	errs "github.com/Decred-Next/dcrpool/errors"
+	errs "github.com/Decred-Next/dcrnpool/errors"
 )
 
 const (

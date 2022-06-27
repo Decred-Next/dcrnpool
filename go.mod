@@ -1,4 +1,4 @@
-module github.com/Decred-Next/dcrpool
+module github.com/Decred-Next/dcrnpool
 
 go 1.17
 

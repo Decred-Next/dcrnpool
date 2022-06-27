@@ -16,7 +16,7 @@ import (
 	"os"
 
 	"github.com/Decred-Next/dcrnd/chaincfg/v8"
-	"github.com/Decred-Next/dcrpool/pool"
+	"github.com/Decred-Next/dcrnpool/pool"
 )
 
 const dbname = "v1.db"
