@@ -15,7 +15,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/decred/dcrd/chaincfg/v3"
+	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 )
 
 func makeConn(listener *net.TCPListener, serverCh chan net.Conn) (net.Conn, net.Conn, error) {

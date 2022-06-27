@@ -9,7 +9,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/decred/dcrd/chaincfg/v3"
+	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 
 	errs "github.com/decred/dcrpool/errors"
 )

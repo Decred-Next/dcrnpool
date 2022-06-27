@@ -8,7 +8,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/decred/dcrd/chaincfg/chainhash"
+	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
 	"github.com/decred/dcrd/dcrutil/v4"
 
 	errs "github.com/decred/dcrpool/errors"

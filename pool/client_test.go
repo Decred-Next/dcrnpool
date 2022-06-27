@@ -11,7 +11,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/decred/dcrd/blockchain/standalone/v2"
+	"github.com/Decred-Next/dcrnd/blockchain/standalone/v8"
 	"io"
 	"math"
 	"math/big"
@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/decred/dcrd/chaincfg/v3"
+	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 
 	errs "github.com/decred/dcrpool/errors"
 )

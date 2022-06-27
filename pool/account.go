@@ -7,7 +7,7 @@ package pool
 import (
 	"encoding/hex"
 
-	"github.com/decred/dcrd/crypto/blake256"
+	"github.com/Decred-Next/dcrnd/crypto/blake256/v8"
 )
 
 var (

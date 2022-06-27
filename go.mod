@@ -3,13 +3,14 @@ module github.com/decred/dcrpool
 go 1.17
 
 require (
-	decred.org/dcrwallet/v2 v2.0.0-20211103180222-0b23f7aca4a1
-	github.com/decred/dcrd/blockchain/standalone/v2 v2.0.1-0.20210914212651-723d86274b0d
-	github.com/decred/dcrd/certgen v1.1.2-0.20210914212651-723d86274b0d
-	github.com/decred/dcrd/chaincfg/chainhash v1.0.4-0.20210914212651-723d86274b0d
-	github.com/decred/dcrd/chaincfg/v3 v3.0.1-0.20210914212651-723d86274b0d
-	github.com/decred/dcrd/crypto/blake256 v1.0.1-0.20210914212651-723d86274b0d
-	github.com/decred/dcrd/dcrjson/v4 v4.0.0
+	github.com/Decred-Next/dcrnwallet/v8 v8.0.10
+	github.com/Decred-Next/dcrnd/blockchain/standalone/v8 v8.0.10
+	github.com/Decred-Next/dcrnd/certgen/v8 v8.0.10
+	github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8 v8.0.10
+	github.com/Decred-Next/dcrnd/chaincfg/v8 v8.0.10
+	github.com/Decred-Next/dcrnd/crypto/blake256/v8 v8.0.10
+	github.com/Decred-Next/dcrnd/dcrjson/version4/v8 v8.0.10
+
 	github.com/decred/dcrd/dcrutil/v4 v4.0.0-20211103115647-1eff7272fddf
 	github.com/decred/dcrd/rpc/jsonrpc/types/v3 v3.0.0-20211103115647-1eff7272fddf
 	github.com/decred/dcrd/rpcclient/v7 v7.0.0-20211103115647-1eff7272fddf
@@ -52,7 +53,7 @@ require (
 )
 
 replace (
-	github.com/decred/dcrd/chaincfg/v3 v3.0.1-0.20210914212651-723d86274b0d => ../dcrnd/chaincfg
-	github.com/decred/dcrd/wire v1.4.1-0.20210914212651-723d86274b0d => ./wire
-	golang.org/x/sys v0.0.0-20200814200057-3d37ad5750ed => golang.org/x/sys v0.0.0-20220315194320-039c03cc5b86
+	//github.com/Decred-Next/dcrnd/chaincfg/v8 v3.0.1-0.20210914212651-723d86274b0d => ../dcrnd/chaincfg
+	//github.com/decred/dcrd/wire v1.4.1-0.20210914212651-723d86274b0d => ./wire
+	//golang.org/x/sys v0.0.0-20200814200057-3d37ad5750ed => golang.org/x/sys v0.0.0-20220315194320-039c03cc5b86
 )

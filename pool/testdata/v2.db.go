@@ -14,8 +14,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/decred/dcrd/chaincfg/chainhash"
-	"github.com/decred/dcrd/chaincfg/v3"
+	"github.com/Decred-Next/dcrnd/chaincfg/chainhash/v8"
+	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 	"github.com/decred/dcrd/dcrutil/v3"
 	"github.com/decred/dcrpool/pool"
 )

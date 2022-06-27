@@ -5,7 +5,7 @@
 package main
 
 import (
-	"github.com/decred/dcrd/chaincfg/v3"
+	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 )
 
 type params struct {

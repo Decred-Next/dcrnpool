@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/decred/dcrd/chaincfg/v3"
+	"github.com/Decred-Next/dcrnd/chaincfg/v8"
 	"github.com/decred/dcrd/txscript/v4/stdaddr"
 )
 
